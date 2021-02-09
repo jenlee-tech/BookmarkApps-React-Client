@@ -1,7 +1,7 @@
 import React, { Component } from  'react';
-import BookmarksContext from '../BookmarksContext';
-import config from '../config'
+import config from '../config';
 import './AddBookmark.css';
+import BookmarksContext from '../BookmarksContent';
 
 const Required = () => (
   <span className='AddBookmark__required'>*</span>
@@ -48,17 +48,22 @@ static contextType = BookmarksContext;
         url.value = ''
         description.value = ''
         rating.value = ''
+        this.context.AddBookmark('data')
         this.props.history.push('/')
-        this.props.onAddBookmark(data)
+        
       })
       .catch(error => {
         this.setState({ error })
       })
   }
 
+  handleClickCancel = () => {
+        this.props.history.push('/')
+      };
+
+
   render() {
     const { error } = this.state
-    const { onClickCancel } = this.props
     return (
       <section className='AddBookmark'>
         <h2>Create a bookmark</h2>
@@ -123,7 +128,7 @@ static contextType = BookmarksContext;
             />
           </div>
           <div className='AddBookmark__buttons'>
-            <button type='button' onClick={onClickCancel}>
+          <button type='button' onClick={this.handleClickCancel}>
               Cancel
             </button>
             {' '}
@@ -137,4 +142,4 @@ static contextType = BookmarksContext;
   }
 }
 
-export default withRouter(AddBookmark);
+export default AddBookmark;
