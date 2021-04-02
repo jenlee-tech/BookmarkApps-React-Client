@@ -1,7 +1,7 @@
 import React, { Component } from  'react';
 import config from '../config';
 import './AddBookmark.css';
-import BookmarksContext from '../BookmarksContent';
+import BookmarksContext from '../BookmarksContext';
 
 const Required = () => (
   <span className='AddBookmark__required'>*</span>

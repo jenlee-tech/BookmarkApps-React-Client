@@ -1,10 +1,10 @@
 import React from 'react';
 import Rating from '../Rating/Rating';
-import BookmarksContext from "../BookmarksContent";
+import BookmarksContext from "../BookmarksContext";
 import config from "../config";
 import './BookmarkItem.css';
 
-function deleteBookmarkRequest(bookmarkId, callback) {
+function deleteBookmarkRequest(bookmarkId, cb) {
   fetch(config.API_ENDPOINT + `/${bookmarkId}`, {
     method: 'DELETE',
     headers: {
@@ -24,7 +24,7 @@ function deleteBookmarkRequest(bookmarkId, callback) {
     .then(data => {
       // call the callback when the request is successful
       // this is where the App component can remove it from state
-      callback(bookmarkId)
+      cb(bookmarkId)
     })
     .catch(error => {
       console.error(error)
